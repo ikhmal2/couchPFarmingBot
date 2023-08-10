@@ -1,0 +1,18 @@
+Okay so gameplay dia macam ni
+
+kita ada 6 spells:
+	3 hits
+	3 enchant
+
+kita nak dia detect first echant and first attack 
+
+flow:
+	1. click enchant then click hits
+	2. check kalau pip cukup -- check colour kalau grey kita click pass
+	3. kalau cukup kita click hit tu
+	4. check kalau battle circle is true
+	5. if(true) { ulang steps 1 -4 }
+	6. else gerak forward back dengan jump randint sleep dia so susah detect -- ulang step 5
+
+data:
+	
