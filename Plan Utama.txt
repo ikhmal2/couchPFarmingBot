@@ -18,6 +18,8 @@ review:
 	1. so far accuracy dia select tu Okay
 	2. nak kena refactor so kita boleh stop dia on click and sekarang ni kita boleh anggap dia cuma infinite loop sebab counter tak naik even dah run banyak kali
 
-TODO: nak taknak kena refactor jugak bagi dia 100% modular so boleh avoid infinite loop tu
+TODO: nak taknak kena refactor jugak bagi dia 100% modular so boleh avoid infinite loop tu {done}
 TODO: tambah feature where if let's say ada mob lambat masuk tapi dah attack or crit kena block so nak check kalau battle still on and pips tak cukup terus click pass then continue cam beshe
 TODO: check kalau mana dah habis/low kita click potion
+
+lepas increase recursion limit okay la jugak tpi kalau nak sedpa lagi maybe boleh pakai bat script untuk run main.py tu so kalau main.py dah stop dia re run balik nak counter python limits
