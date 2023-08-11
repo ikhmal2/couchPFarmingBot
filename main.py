@@ -110,7 +110,7 @@ def WanderAbout():
 
 def SelectAOE():
     find = auto.locateOnScreen("Images/2.png", confidence=0.6, grayscale=False)
-    notEnoughPips = auto.locateOnScreen("Images/piptakcukup.png", confidence=0.6, grayscale=False)
+    notEnoughPips = auto.locateOnScreen("Images/4.png", confidence=0.6, grayscale=False)
     passBtn = auto.locateOnScreen("Images/pass.png", confidence=0.6, grayscale=False)
     
     # if debug == True:
