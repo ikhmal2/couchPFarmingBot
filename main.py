@@ -1,27 +1,21 @@
+import sys
 import pyautogui as auto
 import time
 import keyboard
 import numpy as np
 from random import randint
 
+sys.setrecursionlimit(5000)
+
 print("Couch Potato Bot Starting in 5 seconds...\nSwitch Tabs Now")
 time.sleep(5)
-debug = True
-nakExit = False
-if keyboard.is_pressed('q'):
-    nakExit = True
-    print("mencuba stop")
-    
-counter = 0
+debug = True    
 
 def CheckIfBattle():
-    global counter
-    if nakExit == True:
-        exit("berhenti dah")
-    find = auto.locateOnScreen(
+    book = auto.locateOnScreen(
         "Images/book.jpg", confidence=0.7, grayscale=False)
     time.sleep(np.random.uniform(0.1, 0.5))
-    if find:
+    if book:
         if debug == True:
             print("Not in battle")
         CheckIfBattle()
@@ -29,19 +23,30 @@ def CheckIfBattle():
         time.sleep(0.5)
         if debug == True:
             print("Entered Battle...")
-        counter =+ 1
         SelectPowerUp()
+        # notEnoughPips = auto.locateOnScreen("Images/4.png", confidence=0.6, grayscale=False)
+        # passBtn = auto.locateOnScreen("Images/pass.png", confidence=0.6, grayscale=False)
+        # if debug == True:
+        #      print("Not enough pips, need to pass")
+        # if notEnoughPips:
+        #     MoveMouseOutWay()
+        #     time.sleep(np.random.uniform(0.1, 0.3))
+        #     button = auto.center(passBtn)
+        #     auto.click(button)
+        #     time.sleep(np.random.uniform(0.1, 0.3))
+        #     auto.click(button)
+        # else:
 
 
 def SelectPowerUp():
     auto.move(0, 300, duration=1)
-    find = auto.locateOnScreen("Images/1.jpg", confidence=0.5, grayscale=False)
+    epic = auto.locateOnScreen("Images/1.jpg", confidence=0.5, grayscale=False)
     if debug == True:
         print("Looking for Enchantment...")
-    if find:
+    if epic:
         if debug == True:
             print("Selecting Enchantment...")
-        button = auto.center(find)
+        button = auto.center(epic)
 
         auto.click(button)
         auto.click(button)
@@ -94,9 +99,9 @@ def WanderAbout():
             print(f"Completed walkabout")
         CheckIfBattle()
 
-    find = auto.locateOnScreen(
+    book = auto.locateOnScreen(
         "Images/book.jpg", confidence=0.7, grayscale=False)
-    if find:
+    if book:
         time.sleep(0.5)
         if debug == True:
             print("Battle has ended...")
@@ -104,27 +109,31 @@ def WanderAbout():
     else:
         if debug == True:
             print("Waiting for battle to end...")
-        time.sleep(1)
-        WanderAbout()
+        notEnoughPips = auto.locateOnScreen("Images/4.png", confidence=0.6, grayscale=False)
+        passBtn = auto.locateOnScreen("Images/pass.png", confidence=0.6, grayscale=False)
+        if debug == True:
+             print("Not enough pips, need to pass")
+        if notEnoughPips:
+            MoveMouseOutWay()
+            time.sleep(np.random.uniform(0.1, 0.3))
+            button = auto.center(passBtn)
+            auto.click(button)
+            time.sleep(np.random.uniform(0.1, 0.3))
+            auto.click(button)
+            CheckIfBattle()
+        else:
+            time.sleep(1)
+            WanderAbout()
 
 
 def SelectAOE():
-    find = auto.locateOnScreen("Images/2.png", confidence=0.6, grayscale=False)
-    notEnoughPips = auto.locateOnScreen("Images/4.png", confidence=0.6, grayscale=False)
-    passBtn = auto.locateOnScreen("Images/pass.png", confidence=0.6, grayscale=False)
-    
-    # if debug == True:
-    #     print("Not enough pips, need to pass")
-    # if notEnoughPips:
-    #     button = auto.center(passBtn)
-    #     auto.click(button)
-    
+    humangofrogNotEchanted = auto.locateOnScreen("Images/2.png", confidence=0.6, grayscale=False)
     if debug == True:
         print("Looking for AOE...")
-    if find:
+    if humangofrogNotEchanted:
         if debug == True:
             print("Selecting Enchantment...")
-        button = auto.center(find)
+        button = auto.center(humangofrogNotEchanted)
 
         time.sleep(np.random.uniform(0.1, 0.3))
         auto.click(button)
@@ -135,10 +144,10 @@ def SelectAOE():
             MoveMouseOutWay()
             if debug == True:
                 print("Looking for AOE")
-            find = auto.locateOnScreen(
+            humangofrogEchanted = auto.locateOnScreen(
                 "Images/3.png", confidence=0.9, grayscale=False)
-            if find:
-                button = auto.center(find)
+            if humangofrogEchanted:
+                button = auto.center(humangofrogEchanted)
                 time.sleep(np.random.uniform(0.1, 0.3))
                 auto.click(button)
                 time.sleep(np.random.uniform(0.1, 0.4))
@@ -159,12 +168,4 @@ def SelectAOE():
 def MoveMouseOutWay():
     auto.move(0, 200)
 
-# CheckIfBattle()
-try:
-    CheckIfBattle()
-except KeyboardInterrupt:
-	#Statements to execute upon that exception
-    print("this is how many times the the program ran: ", counter)
-else:
-	#Statements when no exception occurs
-	CheckIfBattle()
+CheckIfBattle()
